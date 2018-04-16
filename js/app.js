@@ -8,7 +8,32 @@ var Enemy = function(x, y) {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y;
+    this.width = 78;
+    this.height = 71;
 };
+
+// Enemy collision with player
+Enemy.prototype.checkCollision = function(player) {
+    // var rect1 = {x: 5, y: 5, width: 50, height: 50}
+    // var rect2 = {x: 20, y: 10, width: 10, height: 10}
+
+    // if (rect1.x < rect2.x + rect2.width &&
+    //  rect1.x + rect1.width > rect2.x &&
+    //  rect1.y < rect2.y + rect2.height &&
+    //  rect1.height + rect1.y > rect2.y) {
+    // // collision detected!
+    // }
+
+    if (this.x < player.x + player.width &&
+        this.x + this.width > player.x &&
+        this.y < player.y + player.height &&
+        this.height + this.y > player.y
+        ) {
+        //alert('ciocnire');
+        console.log('ciocnire');
+        player.reset();
+        }
+}
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -16,7 +41,8 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x += 80 * dt;
+    this.checkCollision(player);
+    this.x += 30 * dt;
     if (this.x > 500) this.x = 0;
 };
 
@@ -34,12 +60,22 @@ var Player = function(avatar = 'char-boy.png') {
     this.sprite = 'images/' + avatar;
     this.x = 200;
     this.y = 400;
+    this.width = 65;
+    this.height = 84;
 }
 
 Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    //this.x = 200;
+    //this.y = 400;
+}
+
+// Reset player
+Player.prototype.reset = function() {
+    this.x = 200;
+    this.y = 400;
 }
 
 // Draw the player on the screen, required method for game
@@ -50,9 +86,8 @@ Player.prototype.render = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [new Enemy(5, 65), new Enemy(5, 150), new Enemy(5, 235)];
 var player = new Player();
-
+var allEnemies = [new Enemy(5, 65), new Enemy(5, 150), new Enemy(5, 235)];
 
 Player.prototype.handleInput = function(key) {
     switch (key) {
@@ -61,7 +96,7 @@ Player.prototype.handleInput = function(key) {
         }
         break;
         case 'up': if (this.y >= 60) {
-            this.y -= 85;
+            this.y -= 83;
         }
         break;
         case 'right': if (this.x < 402) {
@@ -69,7 +104,7 @@ Player.prototype.handleInput = function(key) {
         }
         break;
         case 'down': if (this.y < 400) {
-            this.y +=85;
+            this.y +=83;
         }
         break;
     }
