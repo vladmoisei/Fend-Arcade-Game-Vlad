@@ -56,7 +56,22 @@ var player = new Player();
 
 Player.prototype.handleInput = function(key) {
     switch (key) {
-        case 'left': 
+        case 'left': if (this.x >= 90) {
+            this.x -= 101;
+        }
+        break;
+        case 'up': if (this.y >= 60) {
+            this.y -= 85;
+        }
+        break;
+        case 'right': if (this.x < 402) {
+            this.x += 101;
+        }
+        break;
+        case 'down': if (this.y < 400) {
+            this.y +=85;
+        }
+        break;
     }
 }
 // This listens for key presses and sends the keys to your
