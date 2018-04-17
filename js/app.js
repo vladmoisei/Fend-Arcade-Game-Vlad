@@ -50,7 +50,7 @@ Enemy.prototype.update = function(dt) {
     if (this.x > 550) {
         //console.log(this.x);
         this.reset();
-        console.log(this.x);
+        //console.log(this.x);
     }
 };
 
@@ -65,6 +65,7 @@ Enemy.prototype.reset = function() {
         this.x = (-50) * getCoordonateEndX();
         this.y = getRowNumber();
         this.speed = setSpeedOfEnemy();
+        this.increaseNumber();
 }
 
 //Increase enemy number by level
@@ -73,6 +74,7 @@ Enemy.prototype.increaseNumber = function () {
         case 2: {
             if (allEnemies.length === 3) {
                 allEnemies.push (new Enemy(-50, getRowNumber()));
+                console.log(allEnemies.length);
             }
         }
         break;
@@ -89,7 +91,6 @@ Enemy.prototype.increaseNumber = function () {
         }
         break;
     }
-    return speed;
 }
 
 // Now write your own player class
@@ -110,7 +111,10 @@ Player.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     //this.x = 200;
-    //this.y = 400;
+    if (this.y < 0) {
+        score.textContent = (1+Number(score.textContent)).toString();
+        this.reset();
+    }
 }
 
 // Reset player
@@ -180,7 +184,7 @@ function checkLevel() {
     else if (scoreValue > 35) {
         level = 4;
     }
-    else {
+    else if (scoreValue < 10) {
         level = 1;
     }
     return level;
@@ -207,7 +211,7 @@ function setSpeedOfEnemy() {
         case 4: speed = getRandomInt(12, 30) * 10;
         break;
     }
-    console.log(speed);
+    //console.log(speed);
     return speed;
 }
 
