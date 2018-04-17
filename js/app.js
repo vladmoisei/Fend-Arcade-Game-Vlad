@@ -1,3 +1,5 @@
+let score = document.querySelector('.score__label');
+let level = 1;
 // Enemies our player must avoid
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -10,6 +12,7 @@ var Enemy = function(x, y) {
     this.y = y;
     this.width = 78;
     this.height = 50;
+    this.speed = setSpeedOfEnemy();
 };
 
 // Enemy collision with player
@@ -42,10 +45,10 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.checkCollision(player);
-    this.x += setSpeedOfEnemy() * dt;
+    this.x += this.speed * dt;
     //check if enemy's position is oputside the canvas
     if (this.x > 550) {
-        console.log(this.x);
+        //console.log(this.x);
         this.reset();
         console.log(this.x);
     }
@@ -61,6 +64,32 @@ Enemy.prototype.reset = function() {
     //check if enemy's position is oputside the canvas
         this.x = (-50) * getCoordonateEndX();
         this.y = getRowNumber();
+        this.speed = setSpeedOfEnemy();
+}
+
+//Increase enemy number by level
+Enemy.prototype.increaseNumber = function () {
+    switch (checkLevel()) {
+        case 2: {
+            if (allEnemies.length === 3) {
+                allEnemies.push (new Enemy(-50, getRowNumber()));
+            }
+        }
+        break;
+        case 3: {
+            if (allEnemies.length === 4) {
+                allEnemies.push (new Enemy(-50, getRowNumber()));
+            }
+        }
+        break;
+        case 4: {
+            if (allEnemies.length === 5) {
+                allEnemies.push (new Enemy(-50, getRowNumber()));
+            }
+        }
+        break;
+    }
+    return speed;
 }
 
 // Now write your own player class
@@ -140,8 +169,6 @@ document.addEventListener('keyup', function(e) {
 // * Function return speed for enemy by level
 
 //Function Set level
-let score = document.querySelector('.score__label');
-let level = 1;
 function checkLevel() {
     let scoreValue = Number(score.textContent);
     if (scoreValue > 10 && scoreValue < 21) {
@@ -171,15 +198,16 @@ function getRandomInt(min, max) {
 function setSpeedOfEnemy() {
     let speed = 0;
     switch (checkLevel()) {
-        case 1: speed = getRandomInt(30, 120);
+        case 1: speed = getRandomInt(3, 12) * 10;
         break;
-        case 2: speed = getRandomInt(60, 160);
+        case 2: speed = getRandomInt(6, 16) * 10;
         break;
-        case 3: speed = getRandomInt(90, 200);
+        case 3: speed = getRandomInt(9, 20) * 10;
         break;
-        case 4: speed = getRandomInt(120, 300);
+        case 4: speed = getRandomInt(12, 30) * 10;
         break;
     }
+    console.log(speed);
     return speed;
 }
 
