@@ -43,14 +43,19 @@ header {
 .rule {
 	width: 25%;
 	order: 2;
+	padding: 5px;
+	text-align: left;
 }
 
 .char-boy, .char-cat-girl, .char-horn-girl, .char-pink-girl, .char-princess-girl {
 	height: 100px;
-	margin: 3px 0;
+	margin: 0 0 3px 0;
+
+}
+
+.char__selected {
 	border: 5px double aqua;
 	border-radius: 50%;
-
 }
 
 .cell {
