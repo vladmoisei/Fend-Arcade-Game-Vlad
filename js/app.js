@@ -43,13 +43,22 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.checkCollision(player);
     this.x += setSpeedOfEnemy() * dt;
-    if (this.x > 500) this.x = 0;
+    this.reset();
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+// Reset Enemy to start position
+Enemy.prototype.reset = function() {
+    //check if enemy's position is oputside the canvas
+    if (this.x > getRandomInt(500, 650)) {
+        this.x = -50;
+        this.y = getRowNumber();
+    }
+}
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -87,7 +96,7 @@ Player.prototype.render = function() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var player = new Player();
-var allEnemies = [new Enemy(5, 65), new Enemy(5, 150), new Enemy(5, 235)];
+var allEnemies = [new Enemy(5, getRowNumber()), new Enemy(5, getRowNumber()), new Enemy(5, getRowNumber())];
 
 Player.prototype.handleInput = function(key) {
     switch (key) {
@@ -156,19 +165,30 @@ function getRandomInt(min, max) {
 function setSpeedOfEnemy() {
     let speed = 0;
     switch (checkLevel()) {
-        case 1: speed = getRandomInt(20, 90);
+        case 1: speed = getRandomInt(30, 120);
         break;
-        case 2: speed = getRandomInt(50, 120);
+        case 2: speed = getRandomInt(60, 160);
         break;
-        case 3: speed = getRandomInt(80, 160);
+        case 3: speed = getRandomInt(90, 200);
         break;
-        case 4: speed = getRandomInt(110, 200);
+        case 4: speed = getRandomInt(120, 300);
         break;
     }
     return speed;
 }
 
 // Get random rows for enemy
-// * Function
-// * Function
-// * Function
+
+function getRowNumber() {
+    let rowNumber = {1: 65,2: 150, 3: 235};
+    let rowCoordonateX = 0;
+    switch (getRandomInt(1, 4)) {
+        case 1: rowCoordonateX = rowNumber[1];
+        break;
+        case 2: rowCoordonateX = rowNumber[2];
+        break;
+        case 3: rowCoordonateX = rowNumber[3];
+        break;
+    }
+    return rowCoordonateX; //return y coordanate for each row
+}
