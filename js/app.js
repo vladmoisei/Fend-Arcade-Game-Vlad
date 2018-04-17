@@ -9,7 +9,7 @@ var Enemy = function(x, y) {
     this.x = x;
     this.y = y;
     this.width = 78;
-    this.height = 71;
+    this.height = 50;
 };
 
 // Enemy collision with player
@@ -43,7 +43,12 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.checkCollision(player);
     this.x += setSpeedOfEnemy() * dt;
-    this.reset();
+    //check if enemy's position is oputside the canvas
+    if (this.x > 550) {
+        console.log(this.x);
+        this.reset();
+        console.log(this.x);
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -54,10 +59,8 @@ Enemy.prototype.render = function() {
 // Reset Enemy to start position
 Enemy.prototype.reset = function() {
     //check if enemy's position is oputside the canvas
-    if (this.x > getRandomInt(500, 650)) {
-        this.x = -50;
+        this.x = (-50) * getCoordonateEndX();
         this.y = getRowNumber();
-    }
 }
 
 // Now write your own player class
@@ -70,7 +73,7 @@ var Player = function(avatar = 'char-boy.png') {
     this.x = 200;
     this.y = 400;
     this.width = 65;
-    this.height = 84;
+    this.height = 50;
 }
 
 Player.prototype.update = function(dt) {
@@ -150,6 +153,9 @@ function checkLevel() {
     else if (scoreValue > 35) {
         level = 4;
     }
+    else {
+        level = 1;
+    }
     return level;
 }
 
@@ -191,4 +197,11 @@ function getRowNumber() {
         break;
     }
     return rowCoordonateX; //return y coordanate for each row
+}
+
+
+// Get x coordonate to reset enemy position
+function getCoordonateEndX() {
+    let startPositionRandom = getRandomInt(1, 4);
+    return (startPositionRandom);
 }
