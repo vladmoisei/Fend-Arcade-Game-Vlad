@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(x, y) {
+var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -10,6 +10,7 @@ var Enemy = function(x, y) {
     this.y = y;
     this.width = 78;
     this.height = 71;
+    this.speed = speed;
 };
 
 // Enemy collision with player
@@ -42,7 +43,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.checkCollision(player);
-    this.x += 30 * dt;
+    this.x += setSpeedOfEnemy() * dt;
     if (this.x > 500) this.x = 0;
 };
 
@@ -121,3 +122,49 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+//Get random speeds for different levels
+//
+//
+//
+
+//Function Set level
+let score = document.querySelector('.score__label');
+let level = 1;
+function checkLevel() {
+    let scoreValue = Number(score.textContent);
+    if (scoreValue > 10 && scoreValue < 21) {
+        level = 2;
+    }
+    if (scoreValue >= 21 && scoreValue < 36) {
+        level = 3;
+    }
+    else if (scoreValue > 35) {
+        level = 4;
+    }
+    return level;
+}
+
+
+// This Function return a random number between a given interval
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
+//Function Set speed of enemy by level
+function setSpeedOfEnemy() {
+    let speed = 0;
+    switch (checkLevel()) {
+        case 1: speed = getRandomInt(20, 90);
+        break;
+        case 2: speed = getRandomInt(50, 120);
+        break;
+        case 3: speed = getRandomInt(80, 160);
+        break;
+        case 4: speed = getRandomInt(110, 200);
+        break;
+    }
+    return speed;
+}
