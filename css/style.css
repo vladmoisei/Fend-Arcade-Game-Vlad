@@ -45,6 +45,14 @@ header {
 	order: 2;
 }
 
+.char-boy, .char-cat-girl, .char-horn-girl, .char-pink-girl, .char-princess-girl {
+	height: 100px;
+	margin: 3px 0;
+	border: 5px double aqua;
+	border-radius: 50%;
+
+}
+
 .cell {
 	border: 3px solid red;
 }
