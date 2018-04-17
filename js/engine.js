@@ -23,10 +23,12 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
+    var canvasContent = document.querySelector('.canvas');
 
     canvas.width = 505;
     canvas.height = 606;
-    doc.body.appendChild(canvas);
+    //doc.body.appendChild(canvas);
+    canvasContent.appendChild(canvas); // Add Canvas to content div
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
