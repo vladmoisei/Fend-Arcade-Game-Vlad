@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(x, y, speed) {
+var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -10,7 +10,6 @@ var Enemy = function(x, y, speed) {
     this.y = y;
     this.width = 78;
     this.height = 71;
-    this.speed = speed;
 };
 
 // Enemy collision with player
@@ -123,10 +122,10 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-//Get random speeds for different levels
-//
-//
-//
+// Get random speeds for different levels
+// * Function Set Level
+// * Function get random integer between an interval
+// * Function return speed for enemy by level
 
 //Function Set level
 let score = document.querySelector('.score__label');
@@ -153,7 +152,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-//Function Set speed of enemy by level
+//Function return speed of enemy by level
 function setSpeedOfEnemy() {
     let speed = 0;
     switch (checkLevel()) {
@@ -168,3 +167,8 @@ function setSpeedOfEnemy() {
     }
     return speed;
 }
+
+// Get random rows for enemy
+// * Function
+// * Function
+// * Function
