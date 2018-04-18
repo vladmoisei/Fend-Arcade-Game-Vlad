@@ -238,6 +238,26 @@ function getRowNumber() {
     return rowCoordonateX; //return y coordanate for each row
 }
 
+// Get random columns for gem
+
+function getColumnNumber() {
+    let columnNumber = {1: -2,2: 99, 3: 200, 4: 301, 5: 402};
+    let columnCoordonateY = 0;
+    switch (getRandomInt(1, 6)) {
+        case 1: columnCoordonateY = columnNumber[1];
+        break;
+        case 2: columnCoordonateY = columnNumber[2];
+        break;
+        case 3: columnCoordonateY = columnNumber[3];
+        break;
+        case 4: columnCoordonateY = columnNumber[4];
+        break;
+        case 5: columnCoordonateY = columnNumber[5];
+        break;
+    }
+    return columnCoordonateY; //return x coordanate for each column
+}
+
 // Get x coordonate to reset enemy position
 function getCoordonateEndX() {
     let startPositionRandom = getRandomInt(1, 4);
@@ -270,7 +290,7 @@ function checkLives() {
     return false;
 }
 
-//Character Selection
+// Character Selection
 
 let characters = document.querySelectorAll('.char');
 characters.forEach(character => character.addEventListener("click", handlerEventClickOnCard));
@@ -289,3 +309,58 @@ function selectCharacter(elem) {
     elem.className = 'char char__selected';
     player.sprite = elem.getAttribute('src');
 }
+
+// Gem to Canvas
+
+var Gem = function(x, y) {
+    this.sprite = 'images/Key.png';
+    this.x = x;
+    this.y = y;
+    this.width = 50;
+    this.height = 40;
+}
+
+// Gem taken by the player
+Gem.prototype.checkCollision = function(player) {
+
+    if (this.x < player.x + player.width &&
+        this.x + this.width > player.x &&
+        this.y < player.y + player.height &&
+        this.height + this.y > player.y
+        ) {
+        //alert('ciocnire');
+        // increaseScore(); DE FACUT
+        console.log('increase score');
+        }
+}
+
+// Update gem if it is taken or not
+// Parameter: dt, a time delta between ticks
+Gem.prototype.update = function(dt) {
+    // You should multiply any movement by the dt parameter
+    // which will ensure the game runs at the same speed for
+    // all computers.
+    this.checkCollision(player);
+};
+
+// Draw the gem on the screen, required method for game
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+// Reset Enemy to start position
+Gem.prototype.reset = function() {
+    this.x = getColumnNumber();
+    this.y = getRowNumber();
+    this.sprite = gemType[getRandomInt(1, 7)];
+}
+
+var gemType = {
+    1: 'images/Gem-Blue.png',
+    2: 'images/Gem-Green.png',
+    3: 'images/Gem-Orange.png',
+    4: 'images/Key.png',
+    5: 'images/Star.png',
+    6: 'images/Heart.png'
+    };
+let gem = new Gem(getColumnNumber(), getRowNumber());
