@@ -1,5 +1,8 @@
 let score = document.querySelector('.score__label');
 let level = 1;
+let lives = document.querySelector('.life');
+
+let heartHTMl = '<img src="images/Heart.png" alt="Life image" class="heart show">';
 // Enemies our player must avoid
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -33,6 +36,8 @@ Enemy.prototype.checkCollision = function(player) {
         this.height + this.y > player.y
         ) {
         //alert('ciocnire');
+        lives.lastElementChild.remove();
+        checkLives();
         console.log('ciocnire');
         player.reset();
         }
@@ -104,6 +109,7 @@ var Player = function(avatar = 'char-boy.png') {
     this.y = 400;
     this.width = 65;
     this.height = 50;
+    startLives();
 }
 
 Player.prototype.update = function(dt) {
@@ -240,4 +246,13 @@ function getCoordonateEndX() {
 
 
 // Add hearts to HTML
-let lives = document.querySelector('.life');
+
+
+function startLives() {
+    lives.innerHTML = `${heartHTMl}${heartHTMl}${heartHTMl}`
+}
+
+function checkLives() {
+    if (lives.firstElementChild) return true;
+    return false;
+}
