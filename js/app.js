@@ -1,7 +1,7 @@
 let score = document.querySelector('.score__label');
 let level = 1;
 let lives = document.querySelector('.life');
-let hearCounter = 0;
+let heartCounter = 0;
 
 let heartHTMl = '<img src="images/Heart.png" alt="Life image" class="heart show">';
 // Enemies our player must avoid
@@ -268,20 +268,20 @@ function getCoordonateEndX() {
 // Start hearts
 function startLives() {
     lives.innerHTML = `${heartHTMl}${heartHTMl}${heartHTMl}`;
-    hearCounter = 3;
+    heartCounter = 3;
 }
 
 // Add heart to html
 function addHeart() {
     lives.innerHTML += heartHTMl;
-    hearCounter++;
+    heartCounter++;
 }
 
 // Remove heart from html
 function removeHeart() {
     if (lives.firstElementChild) {
         lives.lastElementChild.remove();
-        hearCounter--;
+        heartCounter--;
     }
 }
 
@@ -312,12 +312,14 @@ function selectCharacter(elem) {
 
 // Gem to Canvas
 
-var Gem = function(x, y) {
-    this.sprite = 'images/Key.png';
-    this.x = x;
-    this.y = y;
+var Gem = function() {
+    this.type = getRandomInt(1, 7);
+    this.sprite = gemType[this.type];
+    this.x = getColumnNumber();
+    this.y = getRowNumber();
     this.width = 50;
     this.height = 40;
+    this.score = gemScore[this.type];
 }
 
 // Gem taken by the player
@@ -331,6 +333,9 @@ Gem.prototype.checkCollision = function(player) {
         //alert('ciocnire');
         // increaseScore(); DE FACUT
         console.log('increase score');
+        score.textContent = (this.score + Number(score.textContent)).toString();
+        if (this.type === 6 && heartCounter < 5) addHeart();
+        this.reset();
         }
 }
 
@@ -352,7 +357,9 @@ Gem.prototype.render = function() {
 Gem.prototype.reset = function() {
     this.x = getColumnNumber();
     this.y = getRowNumber();
-    this.sprite = gemType[getRandomInt(1, 7)];
+    this.type = getRandomInt(1, 7);
+    this.sprite = gemType[this.type];
+    this.score = gemScore[this.type];
 }
 
 var gemType = {
@@ -363,4 +370,13 @@ var gemType = {
     5: 'images/Star.png',
     6: 'images/Heart.png'
     };
-let gem = new Gem(getColumnNumber(), getRowNumber());
+var gemScore = {
+    1: 4,
+    2: 2,
+    3: 3,
+    4: 5,
+    5: 10,
+    6: 0
+};
+
+let gem = new Gem();
