@@ -47,10 +47,13 @@ header {
 	text-align: left;
 }
 
-.char-boy, .char-cat-girl, .char-horn-girl, .char-pink-girl, .char-princess-girl {
+.char {
 	height: 100px;
 	margin: 0 0 3px 0;
+}
 
+.char:hover {
+	cursor: pointer;
 }
 
 .char__selected {

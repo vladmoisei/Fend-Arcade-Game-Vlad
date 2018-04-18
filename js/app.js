@@ -1,6 +1,7 @@
 let score = document.querySelector('.score__label');
 let level = 1;
 let lives = document.querySelector('.life');
+let hearCounter = 0;
 
 let heartHTMl = '<img src="images/Heart.png" alt="Life image" class="heart show">';
 // Enemies our player must avoid
@@ -36,7 +37,7 @@ Enemy.prototype.checkCollision = function(player) {
         this.height + this.y > player.y
         ) {
         //alert('ciocnire');
-        lives.lastElementChild.remove();
+        removeHeart();
         checkLives();
         console.log('ciocnire');
         player.reset();
@@ -237,22 +238,54 @@ function getRowNumber() {
     return rowCoordonateX; //return y coordanate for each row
 }
 
-
 // Get x coordonate to reset enemy position
 function getCoordonateEndX() {
     let startPositionRandom = getRandomInt(1, 4);
     return (startPositionRandom);
 }
 
-
-// Add hearts to HTML
-
-
+// Logic lives
+// Start hearts
 function startLives() {
-    lives.innerHTML = `${heartHTMl}${heartHTMl}${heartHTMl}`
+    lives.innerHTML = `${heartHTMl}${heartHTMl}${heartHTMl}`;
+    hearCounter = 3;
+}
+
+// Add heart to html
+function addHeart() {
+    lives.innerHTML += heartHTMl;
+    hearCounter++;
+}
+
+// Remove heart from html
+function removeHeart() {
+    if (lives.firstElementChild) {
+        lives.lastElementChild.remove();
+        hearCounter--;
+    }
 }
 
 function checkLives() {
     if (lives.firstElementChild) return true;
     return false;
+}
+
+//Character Selection
+
+let characters = document.querySelectorAll('.char');
+characters.forEach(character => character.addEventListener("click", handlerEventClickOnCard));
+
+function handlerEventClickOnCard() {
+    clearCharacterSelection();
+    selectCharacter(this);
+    //console.log(this);
+}
+
+function clearCharacterSelection() {
+    characters.forEach(character => character.className = 'char');
+}
+
+function selectCharacter(elem) {
+    elem.className = 'char char__selected';
+    player.sprite = elem.getAttribute('src');
 }
