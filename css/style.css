@@ -61,3 +61,12 @@ header {
 .cell {
 	border: 3px solid red;
 }
+
+.heart {
+	height: 50px;
+	display: none;
+}
+
+.show {
+	display: inline-block;
+}

@@ -237,3 +237,7 @@ function getCoordonateEndX() {
     let startPositionRandom = getRandomInt(1, 4);
     return (startPositionRandom);
 }
+
+
+// Add hearts to HTML
+let lives = document.querySelector('.life');
