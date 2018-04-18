@@ -80,7 +80,7 @@ Enemy.prototype.increaseNumber = function () {
         case 2: {
             if (allEnemies.length === 3) {
                 allEnemies.push (new Enemy(-50, getRowNumber()));
-                console.log(allEnemies.length);
+                //console.log(allEnemies.length);
             }
         }
         break;
@@ -209,13 +209,13 @@ function getRandomInt(min, max) {
 function setSpeedOfEnemy() {
     let speed = 0;
     switch (checkLevel()) {
-        case 1: speed = getRandomInt(3, 12) * 10;
+        case 1: speed = getRandomInt(3, 16) * 10;
         break;
-        case 2: speed = getRandomInt(6, 16) * 10;
+        case 2: speed = getRandomInt(6, 20) * 10;
         break;
-        case 3: speed = getRandomInt(9, 20) * 10;
+        case 3: speed = getRandomInt(12, 30) * 10;
         break;
-        case 4: speed = getRandomInt(12, 30) * 10;
+        case 4: speed = getRandomInt(20, 40) * 10;
         break;
     }
     //console.log(speed);
@@ -355,11 +355,14 @@ Gem.prototype.render = function() {
 
 // Reset Enemy to start position
 Gem.prototype.reset = function() {
-    this.x = getColumnNumber();
-    this.y = getRowNumber();
-    this.type = getRandomInt(1, 7);
-    this.sprite = gemType[this.type];
-    this.score = gemScore[this.type];
+    this.x = -220;
+    setTimeout(function(){
+    gem.x = getColumnNumber();
+    gem.y = getRowNumber();
+    gem.type = getRandomInt(1, 7);
+    gem.sprite = gemType[gem.type];
+    gem.score = gemScore[gem.type]; }, getDelayTimeGem());
+
 }
 
 var gemType = {
@@ -379,4 +382,11 @@ var gemScore = {
     6: 0
 };
 
+function getDelayTimeGem() {
+    let result = getRandomInt(2, 8) * 1000;
+    console.log(result);
+
+    return result;
+}
 let gem = new Gem();
+gem.reset();
