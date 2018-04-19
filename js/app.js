@@ -1,7 +1,7 @@
 let score = document.querySelector('.score__label');
 let level = 1;
 let lives = document.querySelector('.life');
-let heartCounter = 0;
+let heartCounter = 3;
 
 let heartHTMl = '<img src="images/Heart.png" alt="Life image" class="heart show">';
 // Enemies our player must avoid
@@ -39,7 +39,7 @@ Enemy.prototype.checkCollision = function(player) {
         //alert('ciocnire');
         removeHeart();
         checkLives();
-        console.log('ciocnire');
+        //console.log('ciocnire');
         player.reset();
         }
 }
@@ -384,9 +384,23 @@ var gemScore = {
 
 function getDelayTimeGem() {
     let result = getRandomInt(2, 8) * 1000;
-    console.log(result);
-
+    //console.log(result);
     return result;
 }
 let gem = new Gem();
 gem.reset();
+
+// Game over function
+// function gameOver() {
+//     if (heartCounter === 0) {
+//         ctx.strokeStyle = "red";
+//         ctx.fillStyle = "blue";
+//         ctx.lineWidth = 3;
+//         ctx.font = "36pt arial";
+//         ctx.textAlign = "center";
+//         ctx.strokeText("GAME OVER!", 250, 200);
+//         ctx.fillText("GAME OVER!", 250, 200);
+//         return true;
+//     }
+//     return false;
+// }

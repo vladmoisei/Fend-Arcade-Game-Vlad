@@ -48,6 +48,11 @@ var Engine = (function(global) {
          */
         update(dt);
         render();
+        // Check if there are no lives to execute GameOver function
+        if (heartCounter === 0) {
+            gameOver();
+            return;
+        }
 
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
@@ -166,6 +171,23 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+    }
+
+    /* Function Game over
+     * @ Stop execution
+     * @ Show "Game over!"
+    */
+    function gameOver() {
+        var x = canvas.width / 2,
+            y = canvas.height / 2;
+        ctx.textAlign = "center";
+        ctx.strokeStyle = "yellow";
+        ctx.fillStyle = "red";
+        ctx.lineWidth = 6;
+        ctx.font = "bold italic 56pt 'Gaegu'";
+        ctx.strokeText("GAME OVER!", x, y);
+        ctx.fillText("GAME OVER!", x, y);
+        win.cancelAnimationFrame(win.requestAnimationFrame(main));
     }
 
     /* Go ahead and load all of the images we know we're going to need to
