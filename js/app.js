@@ -42,7 +42,7 @@ Enemy.prototype.checkCollision = function(player) {
         //console.log('ciocnire');
         player.reset();
         }
-}
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -72,7 +72,7 @@ Enemy.prototype.reset = function() {
         this.y = getRowNumber();
         this.speed = setSpeedOfEnemy();
         this.increaseNumber();
-}
+};
 
 //Increase enemy number by level
 Enemy.prototype.increaseNumber = function () {
@@ -97,7 +97,7 @@ Enemy.prototype.increaseNumber = function () {
         }
         break;
     }
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -111,7 +111,7 @@ var Player = function(avatar = 'char-boy.png') {
     this.width = 65;
     this.height = 50;
     startLives();
-}
+};
 
 Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
@@ -122,13 +122,13 @@ Player.prototype.update = function(dt) {
         score.textContent = (1+Number(score.textContent)).toString();
         this.reset();
     }
-}
+};
 
 // Reset player
 Player.prototype.reset = function() {
     this.x = 200;
     this.y = 400;
-}
+};
 
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
@@ -160,7 +160,7 @@ Player.prototype.handleInput = function(key) {
         }
         break;
     }
-}
+};
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -320,7 +320,7 @@ var Gem = function() {
     this.width = 50;
     this.height = 40;
     this.score = gemScore[this.type];
-}
+};
 
 // Gem taken by the player
 Gem.prototype.checkCollision = function(player) {
@@ -337,7 +337,7 @@ Gem.prototype.checkCollision = function(player) {
         if (this.type === 6 && heartCounter < 5) addHeart();
         this.reset();
         }
-}
+};
 
 // Update gem if it is taken or not
 // Parameter: dt, a time delta between ticks
@@ -363,7 +363,7 @@ Gem.prototype.reset = function() {
     gem.sprite = gemType[gem.type];
     gem.score = gemScore[gem.type]; }, getDelayTimeGem());
 
-}
+};
 
 var gemType = {
     1: 'images/Gem-Blue.png',
