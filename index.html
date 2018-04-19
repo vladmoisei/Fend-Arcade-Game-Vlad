@@ -1,69 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Gaegu|Indie+Flower|Lobster|Pacifico" rel="stylesheet">
 </head>
-<body class="cell">
-	<header class="cell">
-		<h1>Arcade Game</h1>
-	</header>
+<body>
+    <header>
+        <h1>Arcade Game</h1>
+    </header>
 
-	<div class="content cell">
-		<aside class="character cell">
-			<h2>Select Character</h2>
-			<div class="cell">
-				<img src="images/char-boy.png" class="char char__selected">
-			</div>
-			<div>
-				<img src="images/char-cat-girl.png" class="char">
-			</div>
-			<div>
-				<img src="images/char-horn-girl.png" class="char">
-			</div>
-			<div>
-				<img src="images/char-pink-girl.png" class="char">
-			</div>
-			<div>
-				<img src="images/char-princess-girl.png" class="char">
-			</div>
-		</aside>
+    <div class="content">
+        <aside class="character">
+            <h2>Select Character</h2>
+            <div>
+                <img src="images/char-boy.png" alt="image char boy" class="char char__selected">
+            </div>
+            <div>
+                <img src="images/char-cat-girl.png" alt="image char cat girl" class="char">
+            </div>
+            <div>
+                <img src="images/char-horn-girl.png" alt="image char horn girl" class="char">
+            </div>
+            <div>
+                <img src="images/char-pink-girl.png" alt="image char pink girl" class="char">
+            </div>
+            <div>
+                <img src="images/char-princess-girl.png" alt="image char princess girl" class="char">
+            </div>
+        </aside>
 
-		<div class="game__content cell">
-			<div class="score"><h3>Your score: <label class="score__label"></label></h3></div>
-			<div class="life">
-			</div>
-			<div class="canvas"></div>
-		</div>
+        <div class="game__content">
+            <div class="score"><h3>Your score: <label class="score__label"></label></h3></div>
+            <div class="life">
+            </div>
+            <div class="canvas"></div>
+        </div>
 
-		<aside class="rule cell">
-			<h2>Game's rules</h2>
-			<p>Game starts automatically</p>
-			<p>Press F5 to start a new game</p>
-			<ul>
-				<li>Use arrow keys to move left, right, up, down</li>
-				<li>Score points when you reach the water zone or grab an artefact
-					<ul>
-						<li>Reach the water zone to score 1 point</li>
-						<li>Grab a green gem to score 2 points</li>
-						<li>Grab an orange gem to score 3 points</li>
-						<li>Grab a blue gem to score 4 points</li>
-						<li>Grab a key to score 5 points</li>
-						<li>Grab a star to score 10 points</li>
-					</ul>
-				</li>
-				<li>Your lives is indacating by the number of hearts
-					<ul>
-						<li>Win a life when you pick up a heart (you can have maximum to 5)</li>
-						<li>Lose a life when you hit a bug (or a bug hits you)</li>
-						<li>Speed and number of bugs increase proportional to your score</li>
-						<li>Game ends when you have no more lives</li>
-					</ul>
-				</li>
-			</ul>
-		</aside>
-	</div>
+        <aside class="rule">
+            <h2>Game's rules</h2>
+            <p>Game starts automatically</p>
+            <p>Press F5 to start a new game</p>
+            <ul>
+                <li>Use arrow keys to move left, right, up, down</li>
+                <li>Select your desired character</li>
+                <li>Score points when you reach the water zone or grab an artefact
+                    <ul>
+                        <li>Reach the water zone to score 1 point</li>
+                        <li>Grab a green gem to score 2 points</li>
+                        <li>Grab an orange gem to score 3 points</li>
+                        <li>Grab a blue gem to score 4 points</li>
+                        <li>Grab a key to score 5 points</li>
+                        <li>Grab a star to score 10 points</li>
+                    </ul>
+                </li>
+                <li>Game levels and lives rules
+                    <ul>
+                        <li>Win a life when you pick up a heart (you can have maximum to 5)</li>
+                        <li>Lose a life when you hit a bug (or a bug hits you)</li>
+                        <li>Level of dificulty increase proportional to your score (up to 4 levels)</li>
+                        <li>Speed and number of bugs increase with level</li>
+                        <li>Game ends when you have no more lives</li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <footer>
+            <div class="row">
+                <p>© Right reserved</p>
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="mailto:vladmoisei@yahoo.com?Subject=Hello%20again" target="_top">
+                            <img class="img-float" src="images/yahoo.svg" alt="Yahoo logo">
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/in/vlad-moisei/" target="_top">
+                            <img class="img-float" src="images/linkedin-icon.svg" alt="LinkedIn logo">
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/vladmoisei" target="_top">
+                            <img class="img-float" src="images/facebook-2.svg" alt="Facebook logo">
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://github.com/vladmoisei" target="_top">
+                            <img class="img-float" src="images/github-icon-1.svg" alt="Github logo">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
