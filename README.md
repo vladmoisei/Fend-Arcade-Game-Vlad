@@ -1,6 +1,5 @@
-# Classic Arcade Game Clone
-Udacity Front-End Web Developer Nanodegree Project 3
-===============================
+# Arcade Game
+### Udacity Front-End Web Developer Nanodegree Project 3
 
 ## Project overview
 
@@ -20,7 +19,7 @@ The starting source code was cloned from https://github.com/udacity/frontend-nan
 | Comments              | Comments are present and effectively explain longer code procedures. To exceed specifications, comments must be thorough and concise, and code must be self-documenting. |
 | Documentation         | A README file is included detailing all steps required to successfully run and play the application |
 
-## Steps taken
+## Development
 * Implement Enemy, Player, Gem classes-
   - implement collision between enemy and player
   - movement of enemy
@@ -32,8 +31,8 @@ The starting source code was cloned from https://github.com/udacity/frontend-nan
   - implement collision between gem and player (player take gem)
 * Additional Functionality
   - Player selection: allow the user to select the image for the player character before starting the game.
-  - Score: the score can increase each time the player reaches the water
-  - Collectibles: allow the player to collect artefacts to increase score
+  - Score: the score increase each time the player reaches the water
+  - Collectibles: player can collect artefacts to increase score or lives
   - Level: it is increased by the score number; increase number of enemies; increase speed of enemies
   - Lives: show by hearts number
 
